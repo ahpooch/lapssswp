@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="$($data.language)">
+    $($project = (Get-PodeConfig).Title)
+    $(Use-PodePartialView -Path 'shared/head')
+<body>
+    $(Use-PodePartialView -Path 'shared/navbar' -data @{'AcitiveRoutePath' = '/my-devices'; 'csrfToken' = $data.csrfToken; 'strings' = $data.strings; 'language' = $data.language;})
+
+    $(
+        $device_modal = '
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3" id="exampleModalLabel">%my_devices_view_modal_title%</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="mb-0"></h5>
+                        <p class="mb-0">%my_devices_view_modal_body%</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/devices/%device_name%" class="btn btn-primary" role="button">%my_devices_view_modal_footer_button%</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">%my_devices_view_modal_footer_button_secondary%</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        '
+    )
+    
+    $(
+        $device_template_available = '
+        <div class="col-xs-3 py-1" align="center">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title">%device_name%</h5>
+                    <h6 class="card-subtitle text-muted">%my_devices_view_card_subtitle%</h6>
+                    <h1 class="card-text">
+                        <div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                %my_devices_view_card_button%
+                            </button>
+                        </div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        '
+    )
+
+    $(
+        $device_template_not_available = '
+        <div class="col-xs-3 py-1" align="center">            
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title">%device_name%</h5>
+                    <h1 class="card-text">
+                        <div>
+                            <p>%my_devices_view_card_text_not_found%</p>
+                        </div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        '
+    )
+    
+
+    <div class="content">
+        $(
+            foreach ($device in $data.My_Devices){
+                if($device.device_password_available){
+                    $device_modal -replace ("%device_name%", $device.device_name) `
+                                  -replace ("%my_devices_view_modal_title%", "$(($data.strings).($data.language).my_devices_view_modal_title) $($device.device_name)?" ) `
+                                  -replace ("%my_devices_view_modal_body%", $(($data.strings).($data.language).my_devices_view_modal_body)) `
+                                  -replace ("%my_devices_view_modal_footer_button%", $(($data.strings).($data.language).my_devices_view_modal_footer_button)) `
+                                  -replace ("%my_devices_view_modal_footer_button_secondary%", $(($data.strings).($data.language).my_devices_view_modal_footer_button_secondary)) `
+                                  -replace ("exampleModal","$($device.device_name)Modal")
+                    $device_template_available -replace ("%device_name%",$device.device_name) `
+                                               -replace ("%my_devices_view_card_subtitle%", "$(($data.strings).($data.language).my_devices_view_card_subtitle): $($device.device_password_expirationdate)") `
+                                               -replace ("%my_devices_view_card_button%", $(($data.strings).($data.language).my_devices_view_card_button)) `
+                                               -replace ("#exampleModal", "#$($device.device_name)Modal")
+                } else {
+                    $device_template_not_available -replace ("%device_name%", $device.device_name) `
+                                                   -replace ("%my_devices_view_card_text_not_found%", $(($data.strings).($data.language).my_devices_view_card_text_not_found))
+                }
+            }
+        )
+    </div>
+
+    $(Use-PodePartialView -Path 'shared/footer' -data @{'footer_strings' = $data.footer_strings; 'language' = $data.language;})
+</body>
+
+</html>

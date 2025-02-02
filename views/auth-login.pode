@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="$($data.language)">
+$($project = (Get-PodeConfig).Title)
+$(Use-PodePartialView -Path 'shared/head')
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+            <div class="container-sm">
+                
+                <form action="/login" method="post">
+                    <div class="row mb-2">
+                        <div class="col-md-6 offset-md-3">
+                            <h1 align="center">$($project)</h1>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="username" id="floatingInput"
+                                    placeholder="username" aria-describedby="usernameHelpBlock" ruquired autofocus>
+                                <label for="floatingInput">$(($data.strings).($data.language).username_floating_label)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" name="password" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">$(($data.strings).($data.language).password_floating_label)</label>
+                            </div>
+                        </div>
+                        <input type='hidden' name='pode.csrf' value='$($data.csrfToken)' />
+                    </div>  
+                      
+                    $($validation_error_block = '
+                        <div class="row mb-2">
+                            <div class="col-md-6 offset-md-3">
+                                    <div class="alert alert-danger text-center">validation_error</div>
+                            </div>
+                        </div>
+                    ')
+                    $(if($Data.flash['validation_error']){ $validation_error_block -replace ("validation_error",$Data.flash['validation_error']) })
+                            
+                    <div class="row mb-2">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">$(($data.strings).($data.language).sign_in_button_text)</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- Scripts-->
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

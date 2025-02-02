@@ -1,0 +1,9 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/custom-css/my.css" rel="stylesheet">
+    <title>$((Get-PodeConfig).Title)</title>
+</head>
+

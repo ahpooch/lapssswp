@@ -1,0 +1,56 @@
+﻿{
+    "en": {
+        "Footer_custom_title": "Support team also recommends paying attention to the following resources aimed at assisting users and other interaction.",
+        "Topics":{
+            "Topic1": {
+                "DisplayName": "Account management",
+                "Order": 1,
+                "Blocks": {
+                    "Block1": {
+                        "Order": 1,
+                        "DisplayName": "PWM Project",
+                        "Link": "https://github.com/pwm-project/pwm"
+                    }
+                }
+            },
+            "Topic2": {
+                "DisplayName": "Information",
+                "Order": 2,
+                "Blocks": {
+                    "Block1": {
+                        "Order": 1,
+                        "DisplayName": "Wiki.js",
+                        "Link": "https://js.wiki/"
+                    }
+                }
+            }
+        }
+    },
+    "ru": {
+        "Footer_custom_title": "Команда поддержки так же советует обратить внимание на следующие ресурсы, направленные на помощь и взаимодействие с пользователями",
+        "Topics": {
+            "Topic1": {
+                "DisplayName": "Управление учетной записью",
+                "Order": 1,
+                "Blocks": {
+                    "Block1": {
+                        "Order": 1,
+                        "DisplayName": "PWM Project",
+                        "Link": "https://github.com/pwm-project/pwm"
+                    }
+                }
+            },
+            "Topic2": {
+                "DisplayName": "Информация",
+                "Order": 2,
+                "Blocks": {
+                    "Block1": {
+                        "Order": 1,
+                        "DisplayName": "Wiki.js",
+                        "Link": "https://js.wiki/"
+                    }
+                }
+            }
+        }
+    }
+}

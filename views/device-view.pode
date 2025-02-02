@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="$($data.language)">
+    $($project = (Get-PodeConfig).Title)
+    $(Use-PodePartialView -Path 'shared/head')
+<body>
+    $(Use-PodePartialView -Path 'shared/navbar' -data @{'AcitiveRoutePath' = '/my-devices'; 'csrfToken' = $data.csrfToken; 'strings' = $data.strings; 'language' = $data.language;})
+
+    <div class="content">
+        <div class="col-xs-3" align="center">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> 
+                    <p>$(($data.strings).($data.language).device_view_local_admin_title)</p>
+                    $(
+                        if ((Get-PodeConfig).LocalAdministratorName){
+                            "<p>$(($data.strings).($data.language).device_view_local_account_name_is) <span style=`"color: #ff6600;`"><strong>$((Get-PodeConfig).LocalAdministratorName)</strong></span></p>"
+                        }
+                    ) 
+                    <p>$(($data.strings).($data.language).device_view_for_device)</p>
+                    <p>$($data.device_name)</p>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">$(($data.strings).($data.language).device_view_valid_until): $($data.device_password_expirationdate)</h6>
+                    <h1 class="card-text" style="font-family: monospace;">$($data.device_password)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    $(Use-PodePartialView -Path 'shared/footer' -data @{'footer_strings' = $data.footer_strings; 'language' = $data.language;})
+
+</body>
+</html>

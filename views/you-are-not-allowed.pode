@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="$($data.language)">
+    $($project = (Get-PodeConfig).Title)
+    $(Use-PodePartialView -Path 'shared/head')
+<body>
+    $(Use-PodePartialView -Path 'shared/navbar' -data @{'AcitiveRoutePath' = '/'; 'csrfToken' = $data.csrfToken; 'strings' = $data.strings; 'language' = $data.language;})
+
+    <div class="content">
+        <div class="p-2 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-4">
+              <h1 class="display-5 fw-bold">$(($data.strings).($data.language).you_are_not_allowed_title)</h1>
+              <p class="col-md-8 fs-4">$(($data.strings).($data.language).you_are_not_allowed_message)</p>
+            </div>
+          </div>
+    </div>
+
+    $(Use-PodePartialView -Path 'shared/footer' -data @{'footer_strings' = $data.footer_strings; 'language' = $data.language;})
+</body>
+
+</html>

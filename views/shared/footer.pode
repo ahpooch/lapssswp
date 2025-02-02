@@ -1,0 +1,67 @@
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4">
+
+    <!-- Section: Text -->
+    <section class="mb-4">
+      <p>$(($data.footer_strings).($data.language).Footer_custom_Title)</p>
+    </section>
+    <!-- Section: Text -->
+
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+    $(
+      $Topic_template = '
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">%topic_name%</h5>
+        <ul class="list-unstyled mb-0">
+          %blocks_content%
+        </ul>
+      </div>
+      '
+
+      $Block_template = '
+      <li>
+        <a href="%block_link%" class="text-white">%block_name%</a>
+      </li>
+      '
+
+
+      $Topics = ($data.footer_strings).($data.language).Topics | Get-Member -MemberType NoteProperty | Sort-Object -property $_.Order
+      foreach ($Topic in $Topics){
+        $Blocks = ($data.footer_strings).($data.language).Topics.$($Topic.Name).Blocks | Get-Member -MemberType NoteProperty | Sort-Object -property $_.Order
+        $Blocks_content = ""
+        foreach ($Block in $Blocks){
+          $BlockLink = ($data.footer_strings).($data.language).Topics.$($Topic.Name).Blocks.$($Block.Name).Link
+          $BlockDisplayName = ($data.footer_strings).($data.language).Topics.$($Topic.Name).Blocks.$($Block.Name).DisplayName
+          $Blocks_content += $Block_template -replace ("%block_link%", $BlockLink) -replace ("%block_name%", $BlockDisplayName)
+        }
+        $TopicDisplayName = ($data.footer_strings).($data.language).Topics.$($Topic.Name).DisplayName
+        $Topic_template -replace ("%topic_name%", $($TopicDisplayName)) -replace ("%blocks_content%", $Blocks_content)
+      }
+    )
+
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © $(Get-Date -format "yyyy") Copyright:
+    <a class="text-white" href="$((Get-PodeConfig).CopyrightLink)">$((Get-PodeConfig).CopyrightTitle)</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+<!-- Scripts-->
+<script src="/js/bootstrap.bundle.min.js"></script>

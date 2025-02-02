@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="$($data.language)">
+    $($project = (Get-PodeConfig).Title)
+    $(Use-PodePartialView -Path 'shared/head')
+<body>
+    $(Use-PodePartialView -Path 'shared/navbar' -data @{'AcitiveRoutePath' = '/my-devices'; 'csrfToken' = $data.csrfToken; 'strings' = $data.strings; 'language' = $data.language;})
+
+        <p>$(($data.strings).($data.language).device_view_notfound)</p>
+
+    $(Use-PodePartialView -Path 'shared/footer' -data @{'footer_strings' = $data.footer_strings; 'language' = $data.language;})
+</body>
+</html>
