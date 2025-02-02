@@ -7,7 +7,7 @@ lapssswp позволяет пользователям получать дост
 ![Экран входа](./demo_images/logonscreen_ru.png?raw=true "Экран входа")
 ![Главная](./demo_images/main_page_ru.png?raw=true "Главная")
 ![Мои устройства](./demo_images/my_devices_ru.png?raw=true "Мои устройства")
-![Мои устройства дисклеймер](./demo_images/my_devices_show_disclaymer_ru.png?raw=true "Мои устройства дисклеймер")
+![Мои устройства дисклеймер](./demo_images/my_devices_show_disclaimer_ru.png?raw=true "Мои устройства дисклеймер")
 ![Мои устройства отображение пароля](./demo_images/my_devices_show_display_ru.png?raw=true "Мои устройства отображение пароля")
 
 ## Почему lapssswp

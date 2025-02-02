@@ -7,7 +7,7 @@ lapssswp provide users ability to gain access to a local administator password o
 ![Logon screen](./demo_images/logonscreen_en.png?raw=true "Logon screen")
 ![Main page](./demo_images/main_page_en.png?raw=true "Main page")
 ![My devices](./demo_images/my_devices_en.png?raw=true "My devices")
-![My devices disclaymer](./demo_images/my_devices_show_disclaymer_en.png?raw=true "My devices disclaymer")
+![My devices disclaymer](./demo_images/my_devices_show_disclaimer_en.png?raw=true "My devices disclaymer")
 ![My devices password display](./demo_images/my_devices_show_display_en.png?raw=true "My devices password display")
 
 ## Why lapssswp
