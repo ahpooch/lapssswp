@@ -50,7 +50,7 @@ To determine the devices for a user, a query is made to SCCM to obtain a list of
 
 # lapssswp deployment
 ## Preparing Files
-- Place the project files in any directory, for example, C:lapssswp
+- Place the project files in any directory, for example, C:\lapssswp
 - Edit the server.psm1 file to set the desired configuration.
 - Edit the localization_footer.json file to describe the necessary links that will be displayed at the bottom of the portal.
 
@@ -63,7 +63,7 @@ Powershell 7 should be launched with administrative rights (elevation) and using
 - Launch Powershell 7 under the service account.
 - Run `Start-Process pwsh -Verb RunAs` and confirm UAC if it is enabled.
 ### Launching the lapssswp Portal
-- Run `cd C:lapssswp` or change path to another directory containing the portal files.
+- Run `cd C:\lapssswp` or change path to another directory containing the portal files.
 - Run `& .server.ps1`
 - Go to https://localhost/ or https://localhost:<port>
 
